@@ -28,3 +28,17 @@ app.post("/api/registerUser", async (req, res) => {
         register.release();
     }
 })
+
+app.delete("/api/deleteUser", async (req, res) => {
+    try {
+        destroy = await pool.connect();
+        const { id } = req.body;
+        await client.query('DELETE from Users WHERE id = $1',[id]);
+        res.status(200).send("Usuário deletado com sucesso!");
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Não conectou ao servidor");
+    } finally {
+        register.release();
+    }
+})
