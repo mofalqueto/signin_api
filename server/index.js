@@ -29,6 +29,18 @@ app.post("/api/registerUser", async (req, res) => {
     }
 })
 
+app.get('/api/getUsers', async(req, res) => {
+    try {
+        register = await pool.connect();
+        const data = await register.query(`SELECT * FROM Users`);
+        console.table(data.rows);
+        res.status(200).send(data.rows)
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Erro na consulta")
+    }
+})
+
 app.delete("/api/deleteUser", async (req, res) => {
     try {
         destroy = await pool.connect();
