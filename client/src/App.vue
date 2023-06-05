@@ -1,26 +1,24 @@
 <script setup>
   import RegisterUser from './components/registerUser.vue';
-  import SelectUser from './components/selectUser.vue';
+  import SelectUser from './components/getAllUser.vue';
   import DeleteUser from './components/deleteUser.vue';
-  import ModifyUser from './components/modifyUser.vue';
+  import PutUser from './components/putUser.vue';
 </script>
 
 <template>
-  <RegisterUser>
-
-  </RegisterUser>
+ <RegisterUser>
+  </RegisterUser> <hr>
 
   <SelectUser>
-    
-  </SelectUser>
+  </SelectUser><hr>
 
+  <PutUser>
+  </PutUser><hr>
+  
   <DeleteUser>
-
   </DeleteUser>
 
-  <ModifyUser>
 
-  </ModifyUser>
 </template>
 
 <style scoped>

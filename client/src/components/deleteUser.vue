@@ -1,18 +1,10 @@
 <template>
     <div>
-        <h1>Deletar Usuários</h1>
+        <h1>~*Deletar Usuários*~</h1>
         <form @submit.prevent="deleteUser">
             <div>
-                <label>Nome:</label>
-                <input type="text" v-model="nome">
-            </div>
-            <div>
-                <label>E-mail:</label>
-                <input type="email" v-model="email">
-            </div>
-            <div>
-                <label>Senha</label>
-                <input type="password" v-model="senha">
+                <label>Id:</label>
+                <input type="text" v-model="id">
             </div>
             <button type="submit">Deletar</button>
         </form>
@@ -23,18 +15,14 @@
 export default {
     data(){
         return{
-            nome: '',
-            email: '',
-            senha: '',
+            id: '',
             message: '',
         }
     },
     methods: {
-        registerUser(){
+        deleteUser(){
             const data={
-                nome: this.nome,
-                email: this.email,
-                senha: this.senha
+                id: this.id,
             }
             fetch("http://localhost:3000/api/deleteUser", {
             method: "DELETE",
@@ -52,5 +40,22 @@ export default {
 }}
 </script>
 <style scoped>
-    
+button {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #0e7934;
+    cursor: pointer;
+    transition: border-color 0.25s;
+  }
+  button:hover {
+    border-color: #07281b;
+  }
+  button:focus,
+  button:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }  
 </style>

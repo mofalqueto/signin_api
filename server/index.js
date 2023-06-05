@@ -41,11 +41,27 @@ app.get('/api/getUsers', async(req, res) => {
     }
 })
 
+app.put("/api/putUser", async (req, res) => {
+    try {
+        register = await pool.connect();
+        const { id, nome, email, senha } = req.body;
+        await register.query('UPDATE Users SET nome = $1, email = $2, senha = $3 WHERE id = $4',[nome, email, senha, id]);
+        res.status(200).send("Cadastro alterado com sucesso!");
+        
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Não conectou ao servidor");
+    } finally {
+        register.release();
+    }
+})
+
+
 app.delete("/api/deleteUser", async (req, res) => {
     try {
-        destroy = await pool.connect();
+        register = await pool.connect();
         const { id } = req.body;
-        await client.query('DELETE from Users WHERE id = $1',[id]);
+        await register.query(`DELETE FROM Users WHERE id = ${id}`);
         res.status(200).send("Usuário deletado com sucesso!");
     } catch (error) {
         console.error(error);
